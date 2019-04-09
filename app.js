@@ -1,8 +1,8 @@
 const dotenv = require('dotenv')
 
-const railway = require('./scrapers/railway/railway')
+const booking = require('./scrapers/2019railway/booking')
 
 dotenv.config()
 
-railway.railwayScript()
+booking.bookingScript()
 

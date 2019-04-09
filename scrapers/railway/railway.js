@@ -6,7 +6,7 @@ const utils = require('./utils')
 
 const railwayScript = async () => {
   const startTime = performance.now()
-  const borwser = await puppeteer.launch({ headless: true })
+  const borwser = await puppeteer.launch({ headless: false })
   const page = await borwser.newPage()
 
   await page.goto('http://railway.hinet.net/Foreign/TW/etno1.html')

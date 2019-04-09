@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "dayjs": "^1.8.12",
     "dotenv": "^7.0.0",
+    "form-data": "^2.3.3",
     "puppeteer": "^1.13.0"
   },
   "name": "puppeteer-scripts",
