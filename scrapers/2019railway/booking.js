@@ -35,6 +35,7 @@ const bookingScript = async () => {
   const {
     ID,
     TRAVEL_DATE,
+    BOOK_DATE,
     FROM_STATION,
     TO_STATION,
     TRAIN_NO,
@@ -72,7 +73,7 @@ const bookingScript = async () => {
           'Wait Time: ',
           dayjs(TRAVEL_DATE).valueOf() - dayjs().valueOf(),
         )
-        await page.waitFor(dayjs(TRAVEL_DATE).valueOf() - dayjs().valueOf())
+        await page.waitFor(dayjs(BOOK_DATE).valueOf() - dayjs().valueOf())
 
         await startBookingButton.click()
 
