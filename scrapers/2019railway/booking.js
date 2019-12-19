@@ -56,8 +56,8 @@ const bookingScript = async () => {
   })
 
   // Death By Captcha Socket Client
-  const client = new dbc.SocketClient(username, password)
-  // const client = new dbc.HttpClient(username, password) for http client
+  // const client = new dbc.SocketClient(username, password)
+  const client = new dbc.HttpClient(username, password)
 
   // Solve captcha with type 4 & token_params extra arguments
   await client.decode(
@@ -69,9 +69,14 @@ const bookingScript = async () => {
         )
 
         await inputCaptcha.type(captcha['text'])
+        const bookDate = dayjs(BOOK_DATE)
+        const nowDate = dayjs()
+        const remainingHour = bookDate.diff(nowDate, 'hour')
+        const remainingMinute = bookDate.diff(nowDate, 'minute') % 60
+        const remainingSecond = bookDate.diff(nowDate, 'second') % 60
         console.log(
           'Wait Time: ',
-          dayjs(TRAVEL_DATE).valueOf() - dayjs().valueOf(),
+          `${remainingHour} Hours, ${remainingMinute} Minutes, ${remainingSecond} Seconds `,
         )
         await page.waitFor(dayjs(BOOK_DATE).valueOf() - dayjs().valueOf())
 
@@ -98,7 +103,9 @@ const bookingScript = async () => {
   console.log('To Station: ', TO_STATION)
   await toStation.type(TO_STATION)
   console.log('Travel Date: ', TRAVEL_DATE)
-  await travelDate.type(TRAVEL_DATE)
+  await page.evaluate(travelDate => {
+    document.querySelector('#rideDate1').value = travelDate
+  }, TRAVEL_DATE)
   console.log('Train NO: ', TRAIN_NO)
   await trainNo.type(TRAIN_NO)
 }
