@@ -11,7 +11,8 @@ dayjs.extend(relativeTime)
 const bookingScript = async () => {
   const borwser = await puppeteer.launch({ headless: false })
   const page = await borwser.newPage()
-
+  
+  await page.setViewport({ width: 1366, height: 768 })
   await page.goto(
     'https://tip.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query',
     { waitUntil: 'load' },
