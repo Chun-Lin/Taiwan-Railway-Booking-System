@@ -17,7 +17,6 @@ const bookingScript = async () => {
     'https://tip.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query',
     { waitUntil: 'load' },
   )
-  console.log('ttt')
   await page.waitForSelector('#g-recaptcha-response')
   await page.evaluate(() => {
     document.querySelector('#g-recaptcha-response').style.display = 'block'
@@ -52,7 +51,7 @@ const bookingScript = async () => {
   const token_params = JSON.stringify({
     proxy: 'http://192.168.0.39:8080',
     proxytype: 'HTTP',
-    googlekey: '6LcgypgUAAAAACk7ULMauOBXRqBgyvWRYH9UimHQ',
+    googlekey: '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz',
     pageurl: 'https://tip.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query',
   })
 
