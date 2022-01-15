@@ -4,7 +4,9 @@ const getInfoElements = async page => {
   const travelDate = await page.$('#rideDate1')
   const fromStation = await page.$('#startStation')
   const toStation = await page.$('#endStation')
-  const trainNo = await page.$('#trainNoList1')
+  const trainNo1 = await page.$('#trainNoList1')
+  const trainNo2 = await page.$('#trainNoList2')
+  const trainNo3 = await page.$('#trainNoList3')
   const ticketNumber = await page.$('#normalQty')
   const startBookingButton = await page.$(
     '#queryForm > div.btn-sentgroup > input.btn.btn-3d',
@@ -16,7 +18,9 @@ const getInfoElements = async page => {
     travelDate,
     fromStation,
     toStation,
-    trainNo,
+    trainNo1,
+    trainNo2,
+    trainNo3,
     ticketNumber,
     startBookingButton,
     inputCaptcha,

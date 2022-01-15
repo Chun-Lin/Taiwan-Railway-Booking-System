@@ -27,7 +27,9 @@ const bookingScript = async () => {
     inputId,
     fromStation,
     toStation,
-    trainNo,
+    trainNo1,
+    trainNo2,
+    trainNo3,
     ticketNumber,
     travelDate,
     startBookingButton,
@@ -41,7 +43,9 @@ const bookingScript = async () => {
     BOOK_DATE,
     FROM_STATION,
     TO_STATION,
-    TRAIN_NO,
+    TRAIN_NO1,
+    TRAIN_NO2,
+    TRAIN_NO3,
     TICKET_NUMBER,
     DBC_USERNAME,
     DBC_PASSWORD,
@@ -84,7 +88,7 @@ const bookingScript = async () => {
           'Wait Time: ',
           `${remainingHour} Hours, ${remainingMinute} Minutes, ${remainingSecond} Seconds `,
         )
-        await page.waitFor(dayjs(BOOK_DATE).valueOf() - dayjs().valueOf())
+        // await page.waitFor(dayjs(BOOK_DATE).valueOf() - dayjs().valueOf())
 
         await startBookingButton.click()
 
@@ -112,8 +116,12 @@ const bookingScript = async () => {
   await page.evaluate(travelDate => {
     document.querySelector('#rideDate1').value = travelDate
   }, TRAVEL_DATE)
-  console.log('Train NO: ', TRAIN_NO)
-  await trainNo.type(TRAIN_NO)
+  console.log('Train No1: ', TRAIN_NO1)
+  await trainNo1.type(TRAIN_NO1)
+  console.log('Train No2: ', TRAIN_NO2)
+  await trainNo2.type(TRAIN_NO2)
+  console.log('Train No3: ', TRAIN_NO3)
+  await trainNo3.type(TRAIN_NO3)
 }
 
 module.exports = { bookingScript }
