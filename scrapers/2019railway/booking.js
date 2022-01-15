@@ -22,6 +22,7 @@ const bookingScript = async () => {
     document.querySelector('#g-recaptcha-response').style.display = 'block'
   })
 
+  // get form elements
   const {
     inputId,
     fromStation,
@@ -32,6 +33,8 @@ const bookingScript = async () => {
     startBookingButton,
     inputCaptcha,
   } = await utils.getInfoElements(page)
+
+  // get env data
   const {
     ID,
     TRAVEL_DATE,
@@ -43,17 +46,20 @@ const bookingScript = async () => {
     DBC_USERNAME,
     DBC_PASSWORD,
   } = process.env
-
+  
   const username = DBC_USERNAME // DBC account username
   const password = DBC_PASSWORD // DBC account password
+  
+  // get google site key
+  const googleKey = await page.$eval('#recaptcha > div.g-recaptcha', el => el.dataset.sitekey)
 
   // Proxy and Recaptcha token data
-  const token_params = JSON.stringify({
+  const token_params = await JSON.stringify({
     proxy: 'http://192.168.0.39:8080',
     proxytype: 'HTTP',
-    googlekey: '6LdHYnAcAAAAAI26IgbIFgC-gJr-zKcQqP1ineoz',
+    googlekey: `${googleKey}`,
     pageurl: 'https://tip.railway.gov.tw/tra-tip-web/tip/tip001/tip121/query',
-  })
+  }) 
 
   // Death By Captcha Socket Client
   // const client = new dbc.SocketClient(username, password)
